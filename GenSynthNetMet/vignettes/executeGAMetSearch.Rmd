@@ -1,0 +1,126 @@
+---
+title: "Genetic Algorithm Search for Optimum Metrics of Synthesized Social Networks"
+author: "Daniel O'Neil and Mikel Petty"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Genetic Algorithm Search for Optimum Metrics of Synthesized Social Networks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+Executing the genetic algorithm based search function involves data files that specify a real world network, parameters for the search function, and a compatibility table.  For details about the functions called in this vignette, refer to the GenSynthNetMet manual.  Code in this vignette:
+
+- Reads a data file that provides parameters for the search function
+- Reads a Myers Briggs Type Indicator compatibility table
+- Writes the headers of a status report
+- Calls the search function with the parameters from the data file
+- Formats a table with the best set of metrics found
+- Writes the HTML table of best metrics to a file
+- Displays the generated metrics HTML table
+
+```{r setup, include = TRUE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(GenSynthNetMet)
+
+zz <- file("../results/gaMet_logfile.txt", open="a+")
+
+cpat <- as.matrix(read.csv("../data/CustomCompatibilityTable_MBTI.csv"))
+gaMetIns <- as.data.frame(read.csv("../data/gaMetInputs.csv",header=FALSE))
+
+index <- 9      # Row number from which to retrieve parameters.
+
+ iSampleNum <- 40     # number of networks to generate
+ iPopulationSize <- as.numeric(gaMetIns[index,1])
+ timelimit <- as.numeric(gaMetIns[index,2])  
+ fsociomatrix <- toString(gaMetIns[index,3]) 
+ fbestmetrics <- toString(gaMetIns[index,4]) 
+ fresults <- toString(gaMetIns[index,5])        
+ fsimteam <- toString(gaMetIns[index,6])
+ freport <- toString(gaMetIns[index,7])        
+ reportTitle <- toString(gaMetIns[index,8])
+ frawReport <- toString(gaMetIns[index,9])
+ fRNMets <- toString(gaMetIns[index,10])
+ fSynthMets <- toString(gaMetIns[index,11])
+ 
+kickoff_time <- Sys.time()
+
+writeLines(toString(colnames(cpat)),zz)
+writeLines(c(paste("population: ",iPopulationSize),
+             paste("sociomatrix: ",fsociomatrix),
+             paste("start time: ", kickoff_time), 
+			 paste("timelimit: ",timelimit, " hours"), 
+			 paste("report: ", freport)),zz)
+
+# Print status messages.
+gaMetricsSearch(iSampleNum,iPopulationSize,fsociomatrix,fbestmetrics, cpat, 
+                           fresults,fsimteam, fRNMets, fSynthMets, timelimit)
+
+rpt <- as.data.frame(read.csv(fbestmetrics))
+write.table(rpt,file=frawReport)
+fmtbl <- generateTable(rpt,reportTitle)
+writeLines(fmtbl,freport)             # Write the HTML file 
+
+integratedReport <- file("../results/gaIntegratedReport.html", open="a+")
+writeLines(fmtbl,integratedReport)
+writeLines("<p></p><br><hr>",integratedReport)
+
+completion_time <- Sys.time()
+writeLines(c(paste("end time: ", completion_time),"-----------------------"),zz)
+
+close(zz)
+close(integratedReport)
+
+fmtbl
+```
+
+## Discussion
+
+The gaMetInputs.csv file, located in the data directory, identifies adjacency matrix text files and path names.  The path names point to directories for results and reports.  The index variable specifies the row number from which to retrieve parameters from the gaMetInputs file.  For information about the adjacency matrix text files in the data director, refer to the GenSynthNetMet manual. 
+
+## Shell Scripts for Supercomputer
+The smallest real world social network was used for demonstrating code in this vignette.  To simulate the synthesis of larger social networks, shell scripts were written to excecute the code on a super computer.  This work was made possible in part by a grant of high performance computing resources and technical support from the Alabama Supercomputer Authority. 
+
+Starting independent jobs on the supercomputer involved two shell scripts.  The following shell script writes the number one to a text file and then calls another shell script within a for next loop.
+```{r include = TRUE, eval = FALSE, warning = FALSE}
+#!/bin/sh
+
+# Reset the counter file
+COUNTERFILE="counterfile.txt"
+echo 1 > $COUNTERFILE
+
+for i in {1..14}
+  do
+    echo "Start job number $i. "
+    run_script executeGAMet.sh
+	sleep 3
+  done
+exit 0
+
+```
+
+The second shell script starts a job on the super computer and calls the R script, which was presented in this vignette.
+```{r include = TRUE, eval = FALSE, warning = FALSE}
+#!/bin/sh
+
+source /opt/asn/etc/asn-bash-profiles-special/modules.sh
+module load R/3.3.3
+R CMD BATCH executeGAMet.r
+
+```
+
+Adding the following lines of R code after the line that opened a log file enable the use of a counter that is incremented by jobs started by the previously presented shell scripts. This code opens the text file containing the current index number and then increments the value and writes the new number back to the text file. Each time this action occurs, the same code is called but with an incremented index.  As explained by the comment in the first code chunk of this vignette, the index determines which row from which to retrieve parameters for the search function.
+```{r include = TRUE, eval = FALSE, warning = FALSE}
+# Open the counter file, read the current index, increment it,
+# and store the updated index in the counter file.
+index <- as.integer(scan(file="counterfile.txt"))
+print(paste("Current index is ",index))
+
+incrementedIndex <- index + 1
+write(incrementedIndex, file="counterfile.txt")
+writeLines(paste("Incrementing index to ",incrementedIndex),zz)
+```

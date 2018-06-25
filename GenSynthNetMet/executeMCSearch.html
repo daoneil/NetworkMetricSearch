@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Daniel O’Neil and Mikel Petty" />
+
+<meta name="date" content="2018-06-25" />
+
+<title>Monte Carlo Based Search for Optimum Metrics of Synthesized Social networks</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Monte Carlo Based Search for Optimum Metrics of Synthesized Social networks</h1>
+<h4 class="author"><em>Daniel O’Neil and Mikel Petty</em></h4>
+<h4 class="date"><em>2018-06-25</em></h4>
+
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Executing a Monte Carlo based search function involves data files that specify a real world network, parameters for the search function, and a compatibility table. For details about the functions called in this vignette, refer to the GenSynthNetMet manual. Code in this vignette:</p>
+<ul>
+<li>Reads a data file that provides parameters for the search function</li>
+<li>Reads a Myers Briggs Type Indicator compatibility table</li>
+<li>Writes the headers of a status report</li>
+<li>Calls the search function with the parameters from the data file</li>
+<li>Formats a table with the best set of metrics found</li>
+<li>Writes the HTML table of best metrics to a file</li>
+<li>Displays the generated metrics HTML table</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::opts_chunk$<span class="kw">set</span>(
+  <span class="dt">collapse =</span> <span class="ot">TRUE</span>,
+  <span class="dt">comment =</span> <span class="st">&quot;#&gt;&quot;</span>
+)
+<span class="kw">library</span>(GenSynthNetMet)
+
+zz &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;../results/gaMet_logfile.txt&quot;</span>, <span class="dt">open=</span><span class="st">&quot;a+&quot;</span>)
+
+cpat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">read.csv</span>(<span class="st">&quot;../data/CustomCompatibilityTable_MBTI.csv&quot;</span>))
+mcMetIns &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">read.csv</span>(<span class="st">&quot;../data/mcMeanMetInputs.csv&quot;</span>,<span class="dt">header=</span><span class="ot">FALSE</span>))
+
+index &lt;-<span class="st"> </span><span class="dv">9</span>      <span class="co"># Row number from which to retrieve parameters.</span>
+
+iSampleNum &lt;-<span class="st"> </span><span class="dv">40</span>     <span class="co"># number of networks to generate</span>
+ timelimit &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(mcMetIns[index,<span class="dv">1</span>]) 
+ fsociomatrix &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">2</span>]) 
+ fbestmetrics &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">3</span>]) 
+ fresults &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">4</span>])        
+ fsimteam &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">5</span>])
+ freport &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">6</span>])        
+ reportTitle &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">7</span>])
+ frawReport &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">8</span>])
+ fRNMets &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">9</span>])
+ fSynthMets &lt;-<span class="st"> </span><span class="kw">toString</span>(mcMetIns[index,<span class="dv">10</span>])
+
+kickoff_time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+
+<span class="kw">writeLines</span>(<span class="kw">toString</span>(<span class="kw">colnames</span>(cpat)),zz)
+<span class="kw">writeLines</span>(<span class="kw">c</span>(<span class="kw">paste</span>(<span class="st">&quot;sociomatrix: &quot;</span>,fsociomatrix),
+             <span class="kw">paste</span>(<span class="st">&quot;start time: &quot;</span>, kickoff_time), 
+             <span class="kw">paste</span>(<span class="st">&quot;timelimit: &quot;</span>,timelimit, <span class="st">&quot; hours&quot;</span>), 
+             <span class="kw">paste</span>(<span class="st">&quot;report: &quot;</span>, freport)),zz)
+             
+<span class="kw">mcSearch</span>(iSampleNum,fsociomatrix, fbestmetrics, cpat, 
+                    fresults,fsimteam, fRNMets, fSynthMets, timelimit)</code></pre></div>
+<pre><code>## [1] &quot;end time:  2018-06-26 06:45:32&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rpt &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">read.csv</span>(fbestmetrics))
+<span class="kw">write.table</span>(rpt,<span class="dt">file=</span>frawReport)
+fmtbl &lt;-<span class="st"> </span><span class="kw">generateTable</span>(rpt,reportTitle)
+<span class="kw">writeLines</span>(fmtbl,freport)             <span class="co"># Write the HTML file </span>
+
+integratedReport &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;../results/mcIntegratedReport.html&quot;</span>, <span class="dt">open=</span><span class="st">&quot;a+&quot;</span>)
+<span class="kw">writeLines</span>(fmtbl,integratedReport)
+<span class="kw">writeLines</span>(<span class="st">&quot;&lt;p&gt;&lt;/p&gt;&lt;br&gt;&lt;hr&gt;&quot;</span>,integratedReport)
+
+completion_time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+<span class="kw">writeLines</span>(<span class="kw">c</span>(<span class="kw">paste</span>(<span class="st">&quot;end time: &quot;</span>, completion_time),<span class="st">&quot;-----------------------&quot;</span>),zz)
+
+fmtbl</code></pre></div>
+<table class="table table-bordered">
+<caption>
+<h4>
+Network: Robins Australian Bank<br> Algorithm: Monte Carlo Mean Metrics Search
+</h4>
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Metrics
+</th>
+<th style="text-align:center;">
+T<sub><i>x</i></sub>
+</th>
+<th style="text-align:center;">
+S<sub><i>x̄</i></sub>
+</th>
+<th style="text-align:center;">
+|T<sub><i>x</i></sub>-S<sub><i>x̄</i></sub>|
+</th>
+<th style="text-align:center;">
+R<sub><i>x̄</i></sub>
+</th>
+<th style="text-align:center;">
+|T<sub><i>x</i></sub>-R<sub><i>x̄</i></sub>|
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Number of nodes
+</td>
+<td style="text-align:center;">
+11.000
+</td>
+<td style="text-align:center;">
+11.000
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.000</span>
+</td>
+<td style="text-align:center;">
+11.000
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Number of links
+</td>
+<td style="text-align:center;">
+16.000
+</td>
+<td style="text-align:center;">
+16.000
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.000</span>
+</td>
+<td style="text-align:center;">
+15.875
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.125</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Number of Components
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+<td style="text-align:center;">
+1.300
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.300</span>
+</td>
+<td style="text-align:center;">
+1.400
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.400</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Network density
+</td>
+<td style="text-align:center;">
+0.291
+</td>
+<td style="text-align:center;">
+0.291
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.000</span>
+</td>
+<td style="text-align:center;">
+0.289
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.002</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Degree average
+</td>
+<td style="text-align:center;">
+2.909
+</td>
+<td style="text-align:center;">
+2.909
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.000</span>
+</td>
+<td style="text-align:center;">
+2.886
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.023</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Degree std.dev.
+</td>
+<td style="text-align:center;">
+1.868
+</td>
+<td style="text-align:center;">
+1.379
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.489</span>
+</td>
+<td style="text-align:center;">
+1.354
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.515</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Cluster Coefficient
+</td>
+<td style="text-align:center;">
+0.375
+</td>
+<td style="text-align:center;">
+0.275
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.100</span>
+</td>
+<td style="text-align:center;">
+0.249
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.126</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Avg. Cluster Coefficient
+</td>
+<td style="text-align:center;">
+0.405
+</td>
+<td style="text-align:center;">
+0.311
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.094</span>
+</td>
+<td style="text-align:center;">
+0.308
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.096</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Mean path length
+</td>
+<td style="text-align:center;">
+2.018
+</td>
+<td style="text-align:center;">
+2.500
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.482</span>
+</td>
+<td style="text-align:center;">
+2.728
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.710</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Avg.Betweeness
+</td>
+<td style="text-align:center;">
+5.091
+</td>
+<td style="text-align:center;">
+4.818
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.273</span>
+</td>
+<td style="text-align:center;">
+4.707
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.384</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Max.Betweeness
+</td>
+<td style="text-align:center;">
+25.167
+</td>
+<td style="text-align:center;">
+15.947
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">9.219</span>
+</td>
+<td style="text-align:center;">
+15.572
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">9.595</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Avg.Closeness
+</td>
+<td style="text-align:center;">
+0.052
+</td>
+<td style="text-align:center;">
+0.045
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.006</span>
+</td>
+<td style="text-align:center;">
+0.044
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.008</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Min.Closeness
+</td>
+<td style="text-align:center;">
+0.038
+</td>
+<td style="text-align:center;">
+0.030
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.009</span>
+</td>
+<td style="text-align:center;">
+0.028
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.011</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Avg.Eigencentrality
+</td>
+<td style="text-align:center;">
+0.492
+</td>
+<td style="text-align:center;">
+0.586
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.094</span>
+</td>
+<td style="text-align:center;">
+0.589
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.096</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Network radius
+</td>
+<td style="text-align:center;">
+2.000
+</td>
+<td style="text-align:center;">
+1.800
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.200</span>
+</td>
+<td style="text-align:center;">
+1.500
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.500</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Avg.Eccentricity
+</td>
+<td style="text-align:center;">
+3.091
+</td>
+<td style="text-align:center;">
+3.089
+</td>
+<td style="text-align:center;">
+<span style="background-color: SpringGreen">0.002</span>
+</td>
+<td style="text-align:center;">
+3.109
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.018</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Network diameter
+</td>
+<td style="text-align:center;">
+4.000
+</td>
+<td style="text-align:center;">
+3.825
+</td>
+<td style="text-align:center;">
+<span style="background-color: White">0.175</span>
+</td>
+<td style="text-align:center;">
+3.950
+</td>
+<td style="text-align:center;">
+<span style="background-color: SandyBrown">0.050</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+<p>The mcMeanMetInputs.csv file, located in the data directory, identifies the adjacency matrix text files for real world social networks and the path names. The path names point to directories for results and reports. The index variable specifies the row number from which to retrieve parameters from the gaMetInputs file. For information about the adjacency matrix text files in the data director, refer to the GenSynthNetMet manual.</p>
+</div>
+<div id="shell-scripts-for-supercomputer" class="section level2">
+<h2>Shell Scripts for Supercomputer</h2>
+<p>The smallest real world social network was used for demonstrating code in this vignette. To simulate the synthesis of larger social networks, shell scripts were written to excecute the code on a super computer. This work was made possible in part by a grant of high performance computing resources and technical support from the Alabama Supercomputer Authority.</p>
+<p>Starting independent jobs on the supercomputer involved two shell scripts. The following shell script writes the number one to a text file and then calls another shell script within a for next loop.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#!/bin/sh</span>
+
+<span class="co"># Reset the counter file</span>
+COUNTERFILE=<span class="st">&quot;counterfile.txt&quot;</span>
+echo <span class="dv">1</span> &gt;<span class="st"> </span><span class="er">$</span>COUNTERFILE
+
+for i in {<span class="dv">1</span>..<span class="dv">14</span>}
+  do
+    echo <span class="st">&quot;Start job number $i. &quot;</span>
+    run_script executeMCMet.sh
+    sleep <span class="dv">3</span>
+  done
+exit <span class="dv">0</span></code></pre></div>
+<p>The second shell script starts a job on the super computer and calls the R script, which was presented in this vignette.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#!/bin/sh</span>
+
+COUNTERFILE=<span class="st">&quot;counterfile.txt&quot;</span>
+itemNumber=<span class="st">`</span><span class="dt">cat $COUNTERFILE</span><span class="st">`</span>
+<span class="co"># echo &quot;Current item Number is $itemNumber&quot;</span>
+<span class="co">#SBATCH -J mcMet_%itemNumber</span>
+
+source /opt/asn/etc/asn-bash-profiles-special/modules.sh
+module load R/<span class="fl">3.3.3</span>
+R CMD BATCH executeMcMeanMet.r</code></pre></div>
+<p>Adding the following lines of R code after the line that opened a log file enable the use of a counter that is incremented by jobs started by the previously presented shell scripts. This code opens the text file containing the current index number and then increments the value and writes the new number back to the text file. Each time this action occurs, the same code is called but with an incremented index. As explained by the comment in the first code chunk of this vignette, the index determines which row from which to retrieve parameters for the search function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Open the counter file, read the current index, increment it,</span>
+<span class="co"># and store the updated index in the counter file.</span>
+index &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">scan</span>(<span class="dt">file=</span><span class="st">&quot;counterfile.txt&quot;</span>))
+<span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Current index is &quot;</span>,index))
+
+incrementedIndex &lt;-<span class="st"> </span>index +<span class="st"> </span><span class="dv">1</span>
+<span class="kw">write</span>(incrementedIndex, <span class="dt">file=</span><span class="st">&quot;counterfile.txt&quot;</span>)
+<span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&quot;Incrementing index to &quot;</span>,incrementedIndex),zz)</code></pre></div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

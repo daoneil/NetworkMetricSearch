@@ -1,0 +1,170 @@
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  8
+sociomatrix:  
+start time:  2018-06-24 09:39:34
+timelimit:    hours
+report:  
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  8
+sociomatrix:  
+start time:  2018-06-24 09:44:33
+timelimit:    hours
+report:  
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 09:47:42
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 09:48:09
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 09:48:18
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 09:48:44
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 09:50:13
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 09:50:39
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 09:52:10
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 09:52:36
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 11:58:37
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 11:58:55
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 12:00:49
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 12:01:07
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 12:40:43
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 12:41:01
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 12:41:54
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 12:42:13
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 12:44:07
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 12:44:25
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 13:19:29
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 13:19:47
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 14:20:44
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 14:21:02
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 14:21:41
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 14:21:59
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 15:09:22
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 15:09:40
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 15:19:00
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 15:19:18
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 15:20:35
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 15:20:52
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 15:43:18
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 15:43:35
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-24 21:21:44
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-24 21:22:02
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-25 09:54:39
+timelimit:  20  hours
+report:  ../results/mcMeanMetReport_RobinsBank.html
+end time:  2018-06-25 09:54:41
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+population:  20
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-25 10:36:05
+timelimit:  5  hours
+report:  ../results/gaMetReport_RobinsBank.html
+end time:  2018-06-25 10:36:18
+-----------------------
+ESTP, ISFP, ISTP, ESFP, ESTJ, ESFJ, ISTJ, ISFJ, ENFJ, INFJ, ENFP, INFP, ENTJ, INTJ, ENTP, INTP
+sociomatrix:  ../data/Robins_Australian_Bank.txt
+start time:  2018-06-25 10:45:31
+timelimit:  20  hours
+report:  ../results/mcMeanMetReport_RobinsBank.html
+end time:  2018-06-25 10:45:34
+-----------------------
