@@ -24,5 +24,5 @@ functions by generating the networks, calculating the metrics, averaging the met
 generating comparison tables, and generating reports.
 
 ## Vignettes
--[Monte Carlo search for optimum set of metrics](https://daoneil.github.io/NetworkMetricSearch/executeMCSearch.html)
--[Genetic Algorithm based search for an optimum set of metrics](https://daoneil.github.io/NetworkMetricSearch/executeGAMetSearch.html)
+* [Monte Carlo search for optimum set of metrics](https://daoneil.github.io/NetworkMetricSearch/executeMCSearch.html)
+* [Genetic Algorithm based search for an optimum set of metrics](https://daoneil.github.io/NetworkMetricSearch/executeGAMetSearch.html)
